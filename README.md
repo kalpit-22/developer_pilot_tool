@@ -53,8 +53,8 @@ devpilot/
 ## Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/devpilot
-cd devpilot
+git clone https://github.com/kalpit-22/developer_pilot_tool.git
+cd developer_pilot_tool
 python -m venv .venv
 .venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
@@ -64,7 +64,8 @@ Create a `.env` file:
 DEEPSEEK_API_KEY=your_key_here
 ```
 
-Get your key at [platform.deepseek.com](https://platform.deepseek.com) (~$25 free credits on signup)
+Get your key at [platform.deepseek.com](https://platform.deepseek.com)
+OR you can replace this by using local Ollama models like Qwen.
 
 ## Usage
 
@@ -100,6 +101,7 @@ Build a simple expense tracker that saves to JSON
 ## Cost
 
 About $0.005 per run using `deepseek-chat`.
+$0.00 per run if you are using Ollama or local models.
 
 ## License
 
