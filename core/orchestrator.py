@@ -31,7 +31,7 @@ class Orchestrator:
         self.files: dict[str, str] = {}        # filename -> code
 
     async def run(self, request: str) -> dict:
-        print(f"\n🚀 Starting DevPilot")
+        print(f"\n🚀 Starting Developer Pilot tool")
         print(f"Request: {request}\n")
 
         # ── Clean up from previous run ────────────────────────────────────

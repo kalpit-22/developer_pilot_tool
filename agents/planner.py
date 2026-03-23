@@ -45,7 +45,6 @@ class PlannerAgent(BaseAgent):
         ]
 
         raw = self.chat(messages, max_tokens=1024)
-        # print(f"[Planner] Raw response:\n{raw}\n")
 
         items = self.parse_json(raw)
 
@@ -67,7 +66,6 @@ class PlannerAgent(BaseAgent):
         ]
 
         raw = self.chat(messages, max_tokens=1024)
-        print(f"[Planner] Raw response:\n{raw}\n")
 
         items = self.parse_json(raw)
 

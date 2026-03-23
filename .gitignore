@@ -1,7 +1,6 @@
 # Environments
 venv/
 env/
-outp
 
 # Secrets and API Keys
 .env

@@ -81,8 +81,6 @@ Call write_file with the complete code for {task.filename}."""
 
     def _handle_tool(self, name: str, inp: dict) -> str:
         if name == "write_file":
-            # Debug: see exactly what keys DeepSeek sent
-            print(f"[DEBUG] write_file called with keys: {list(inp.keys())}")
 
             # Handle variations in argument names
             filename = inp.get("filename") or inp.get("file_name") or inp.get("path")

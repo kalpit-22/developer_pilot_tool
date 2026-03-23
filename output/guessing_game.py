@@ -1,16 +1,23 @@
+#!/usr/bin/env python3
+"""A simple number guessing game."""
+
 import random
 import sys
 
+
 def main():
+    """Run the main game loop."""
     print("Welcome to the Number Guessing Game!")
     print("I'm thinking of a number between 1 and 100.")
     
+    # Generate random number
     secret_number = random.randint(1, 100)
     attempts = 0
     
     while True:
         try:
-            guess_input = input("Enter your guess (or 'quit' to exit): ")
+            # Get user input
+            guess_input = input("Enter your guess (or 'quit' to exit): ").strip()
             
             if guess_input.lower() == 'quit':
                 print(f"Thanks for playing! The number was {secret_number}.")
@@ -18,6 +25,11 @@ def main():
             
             guess = int(guess_input)
             attempts += 1
+            
+            # Check the guess
+            if guess < 1 or guess > 100:
+                print("Please enter a number between 1 and 100.")
+                continue
             
             if guess < secret_number:
                 print("Too low! Try again.")
@@ -28,10 +40,11 @@ def main():
                 break
                 
         except ValueError:
-            print("Please enter a valid number or 'quit'.")
-        except EOFError:
-            print("\nGame ended. Thanks for playing!")
-            sys.exit(0)
+            print("Please enter a valid number or 'quit' to exit.")
+        except KeyboardInterrupt:
+            print(f"\nGame interrupted. The number was {secret_number}.")
+            break
+
 
 if __name__ == "__main__":
     main()
