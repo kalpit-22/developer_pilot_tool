@@ -24,6 +24,9 @@ Your Request
   output/  ->  final files saved to disk
 ```
 
+Example
+![alt text](image.png)
+
 ## Agents
 
 | Agent | Role |
