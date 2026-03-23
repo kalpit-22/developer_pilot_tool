@@ -1,6 +1,7 @@
 # Environments
 venv/
 env/
+workspace/
 
 # Secrets and API Keys
 .env

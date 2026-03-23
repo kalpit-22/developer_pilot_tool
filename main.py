@@ -9,7 +9,7 @@ async def main(request: str):
 
 if __name__ == "__main__":
     print("=" * 40)
-    print("  DevPilot - AI Code Generator")
+    print("  Developer Pilot tool - AI Code Generator")
     print("=" * 40)
     request = input("\nWhat would you like to build? > ").strip()
     
