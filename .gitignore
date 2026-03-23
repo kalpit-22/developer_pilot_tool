@@ -1,1 +1,14 @@
-venv/ 
+# Environments
+venv/
+env/
+outp
+
+# Secrets and API Keys
+.env
+
+# Python Cache (Junk files Python makes automatically)
+__pycache__/
+*.pyc
+
+# Mac specific junk (if you ever pull this back to your Mac)
+.DS_Store

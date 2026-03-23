@@ -1,28 +1,6 @@
 """
 ExecutorAgent — runs generated code in a persistent workspace folder.
 
-Workspace layout:
-  workspace/          <- PYTHONPATH root, all files land here
-    src/
-      __init__.py
-      game.py
-      utils.py
-      ...
-    main.py
-
-Running strategy:
-  - Files with no subdirectory  → python -m filename
-  - Files inside src/           → python -m src.filename
-  - Any file                    → falls back to python file.py if module run fails
-
-Common pitfalls handled:
-  - Absolute imports (from src.x import) work via PYTHONPATH=workspace/
-  - Relative imports (from .x import) work because src/ has __init__.py
-  - input() hanging     → stdin fed with dummy test values
-  - Emoji/Unicode crash → PYTHONIOENCODING=utf-8 forced in env
-  - Windows path issues → pathlib used throughout
-  - Leftover state      → workspace cleared before each full pipeline run
-  - Timeout             → process killed after 15s
 """
 
 import asyncio
@@ -138,11 +116,6 @@ class ExecutorAgent:
         """
         Execute task.code in the workspace and store output in task.test_output.
 
-        Strategy:
-          1. Write all completed files + current task into workspace/
-          2. Try running as a module: python -m src.game
-          3. If that fails with an import error, try running as a file: python src/game.py
-          4. Report stdout, stderr, and exit code to the Reviewer
         """
         if not task.filename.endswith(".py"):
             task.test_output = "SKIPPED: not a Python file"
@@ -166,7 +139,7 @@ class ExecutorAgent:
         )
 
         # ── Strategy 2: if module run failed with import error, try direct ───
-        # Some simple single-file scripts don't need package context
+
         if returncode != 0 and (
             "ImportError" in stderr
             or "ModuleNotFoundError" in stderr
