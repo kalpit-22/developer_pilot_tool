@@ -1,7 +1,6 @@
 # DevPilot
 
-An autonomous multi-agent system that takes a plain-English request and
-automatically plans, writes, tests, and reviews Python code.
+A program that takes a plain-English request and automatically plans, writes, tests, and reviews Python code.
 
 ## How It Works
 
@@ -12,7 +11,7 @@ Your Request
   Planner  ->  breaks request into ordered tasks
      |
      v
-  Coder    ->  writes code using file read/write tools
+  Coder    ->  writes code
      |
      v
   Executor ->  runs code in a sandbox, captures output
@@ -27,14 +26,14 @@ Your Request
 Example
 ![alt text](image.png)
 
-## Agents
+## System Components
 
-| Agent | Role |
+| Component | Role |
 |---|---|
 | Planner | Breaks the request into 2-3 focused coding tasks |
-| Coder | Writes complete Python files using tool calling |
+| Coder | Writes complete Python files |
 | Executor | Runs each file in an isolated workspace sandbox |
-| Reviewer | Reads code + output, approves or gives feedback |
+| Reviewer | Reads code and output, approves or gives feedback |
 
 ## Project Structure
 
@@ -42,11 +41,11 @@ Example
 devpilot/
 ├── main.py                  # Entry point
 ├── agents/
-│   ├── base.py              # DeepSeek client + tool calling loop
+│   ├── base.py              # Core logic and execution loop
 │   ├── planner.py           # Task decomposition
-│   ├── coder.py             # Code generation with file tools
+│   ├── coder.py             # Code generation
 │   ├── executor.py          # Subprocess sandbox
-│   └── reviewer.py          # Code review + approval
+│   └── reviewer.py          # Code review and approval
 ├── core/
 │   └── orchestrator.py      # Pipeline coordinator
 ├── workspace/               # Execution sandbox (auto-created)
@@ -59,16 +58,23 @@ devpilot/
 git clone https://github.com/kalpit-22/developer_pilot_tool.git
 cd developer_pilot_tool
 python -m venv .venv
-.venv\Scripts\python.exe -m pip install -r requirements.txt
+# On Windows: .venv\Scripts\activate
+# On Mac/Linux: source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-Create a `.env` file:
+Copy the example environment file:
+```bash
+cp .env.example .env
+```
+
+Edit the `.env` file and add your key:
 ```
 DEEPSEEK_API_KEY=your_key_here
 ```
 
 Get your key at [platform.deepseek.com](https://platform.deepseek.com)
-OR you can replace this by using local Ollama models like Qwen.
+Alternatively, you can replace this by using local models like Qwen.
 
 ## Usage
 
@@ -83,7 +89,7 @@ Then run:
 python main.py
 ```
 
-Generated files are saved to `output/`.
+Generated files are saved to the `output/` directory.
 
 ## Example Requests
 
@@ -98,13 +104,13 @@ Build a simple expense tracker that saves to JSON
 ## Requirements
 
 - Python 3.10+
-- `openai` — DeepSeek API client
+- `openai` — API client
 - `python-dotenv` — loads API key from .env
 
 ## Cost
 
-About $0.005 per run using `deepseek-chat`.
-$0.00 per run if you are using Ollama or local models.
+About $0.005 per run using the cloud API.
+$0.00 per run if you are using local models.
 
 ## License
 
